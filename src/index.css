@@ -18,13 +18,29 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  background-color: #f4f4f4;
 }
 
-.header {
+header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 25px;
   margin-bottom: 20px;
+}
+
+.timeline {
+  flex-grow: 6;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.timeline div {
+  width: 15%;
+  flex-grow: 2;
 }
 
 .nav {
