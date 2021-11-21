@@ -7,7 +7,7 @@ const Timeline = ({ start, end, sprint }) => {
   return (
     <div className='timeline'>
       <div>
-        <h3>Sprint {sprint}</h3>
+        <h2>Sprint {sprint}</h2>
         <li>
           Start date: {start.getDate()}/{start.getMonth() + 1}
         </li>
@@ -15,7 +15,7 @@ const Timeline = ({ start, end, sprint }) => {
           End date: {end.getDate()}/{end.getMonth() + 1}
         </li>
       </div>
-      <h3>Sprint completed: {percentage}%</h3>
+      <h3>Completed: {percentage}%</h3>
       <Line
         className='percentage'
         percent={percentage}
