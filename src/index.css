@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-  max-width: 1700px;
+  width: 90vw;
   margin: 30px auto;
   overflow: auto;
   min-height: 90vh;
@@ -39,10 +39,16 @@ header {
 }
 
 .timeline div {
-  width: 15%;
-  flex-grow: 2;
+  flex-grow: 1;
 }
 
+.numbers {
+  width: 150px;
+}
+
+.sprint-information {
+  width: 250px;
+}
 .main {
   display: flex;
 }
@@ -64,44 +70,42 @@ header {
   flex-wrap: wrap;
 }
 
-.development {
-  flex: 100%;
-  background-color: lightsalmon;
+.area {
+  flex: 48%;
   border: 2px solid black;
   border-radius: 8px;
   padding: 5px;
   min-height: 12rem;
-  margin: 5px;
+  margin: 2px;
+}
+.development {
+  background-color: lightsalmon;
 }
 
 .testing {
-  flex: 48%;
   background-color: lightcoral;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 5px;
-  min-height: 12rem;
-  margin: 5px;
 }
 
-.business {
-  flex: 48%;
+.documentation {
   background-color: lightcyan;
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 5px;
-  min-height: 12rem;
-  margin: 5px;
+}
+
+.functional {
+  background-color: lightgoldenrodyellow;
 }
 
 .actionsArea {
+  max-height: 72vh;
+  overflow: auto;
   flex: 50%;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .action {
   flex: 40%;
+  font-size: 0.7em;
   background: #ffffa5;
   padding: 15px;
   box-shadow: 2px 4px 6px #444;
@@ -112,6 +116,20 @@ header {
   -webkit-box-shadow: 2px 4px 6px #444;
 }
 
+.new-title {
+  border-radius: 5px;
+  border: 1px solid #39c;
+  height: 2em;
+  width: 60%;
+  padding-left: 7px;
+  padding-top: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: medium;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
 .nav {
   display: inline-block;
   height: 500px;
@@ -119,8 +137,8 @@ header {
 }
 
 .member {
-  height: 80px;
-  width: 80px;
+  height: 3.5em;
+  width: 3.5em;
   text-align: center;
   border-radius: 50%;
   color: white;
@@ -129,6 +147,12 @@ header {
   font-style: normal;
   vertical-align: middle;
   border: solid #000 2px;
+}
+
+.picture {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .member:hover {
@@ -221,4 +245,14 @@ header {
 footer {
   margin-top: 30px;
   text-align: center;
+}
+
+.top-right-corner {
+  position: relative;
+  text-align: right;
+}
+
+.icon:hover {
+  color: royalblue;
+  cursor: pointer;
 }

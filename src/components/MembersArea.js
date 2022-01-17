@@ -1,27 +1,33 @@
 import Member from './Member';
+import Members from '../data/members.json';
 
 const MembersArea = () => {
   return (
     <div className='membersArea'>
       <h1>Members</h1>
       <div className='bench'>
-        <Member name='Alberto' surname='Caparros' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
-        <Member name='Juen' surname='Cruise' color='steelblue' />
+        {Members.map((member) => (
+          <Member
+            key={member.id}
+            name={member.name}
+            surname={member.surname}
+            color={member.color}
+            picture={member.picture}
+          />
+        ))}
       </div>
       <div className='workArea'>
-        <div className='development'>
-          <b>Development</b>{' '}
+        <div className='development area'>
+          <b>Development</b>
         </div>
-        <div className='testing'>
-          <b>Testing</b>{' '}
+        <div className='testing area'>
+          <b>Testing</b>
         </div>
-        <div className='business'>
-          <b>Business</b>{' '}
+        <div className='functional area'>
+          <b>Functional</b>
+        </div>
+        <div className='documentation area'>
+          <b>Documentation</b>
         </div>
       </div>
     </div>
