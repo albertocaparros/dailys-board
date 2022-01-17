@@ -2,4 +2,4 @@
 
 Version 1.0
 
-This code is just a playing ground for React, will refactor for state persistency and cleaned it up.
+This code is just a playing ground for React, will refactor for state persistency and clean it up.
