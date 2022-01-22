@@ -1,18 +1,18 @@
-import Timeline from './components/Timeline';
+import Timeline from './components/timeline/Timeline';
+import SprintContextProvider from './components/contexts/SprintContext';
 import ActionsArea from './components/ActionsArea';
 import MembersArea from './components/MembersArea';
-import { DragDropContext } from 'react-beautiful-dnd';
 
 function App() {
   return (
     <div className='container'>
-      <Timeline />
-      <DragDropContext>
-        <div className='main'>
-          <MembersArea></MembersArea>
-          <ActionsArea></ActionsArea>
-        </div>
-      </DragDropContext>
+      <SprintContextProvider>
+        <Timeline />
+      </SprintContextProvider>
+      <div className='main'>
+        <MembersArea></MembersArea>
+        <ActionsArea></ActionsArea>
+      </div>
     </div>
   );
 }
