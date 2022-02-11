@@ -11,8 +11,6 @@ const SprintContextProvider = (props) => {
   };
   let [sprintInformation, setSprintInformation] = useState(localData);
 
-  console.log(localData);
-
   const editSprintInformation = (data) => {
     localStorage.setItem(
       'sprintInformation',

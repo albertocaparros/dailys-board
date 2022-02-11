@@ -1,3 +1,18 @@
 [
-    { "name": "Alberto", "surname": "Caparrós", "color": "steelblue", "id": 0, "picture": "/alberto.png" }
+  {
+    "name": "Alberto",
+    "surname": "Caparrós",
+    "color": "steelblue",
+    "id": 0,
+    "picture": "/alberto.png",
+    "defaultPosition": { "x": 300, "y": 100 }
+  },
+  {
+    "name": "Alberto",
+    "surname": "Caparrós",
+    "color": "steelblue",
+    "id": 1,
+    "picture": "/alberto.png",
+    "defaultPosition": { "x": 300, "y": 100 }
+  }
 ]

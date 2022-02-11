@@ -13,6 +13,7 @@ const MembersArea = () => {
             surname={member.surname}
             color={member.color}
             picture={member.picture}
+            defaultPosition={member.defaultPosition}
           />
         ))}
       </div>

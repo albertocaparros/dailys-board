@@ -1,8 +1,8 @@
 import Draggable from 'react-draggable';
 
-const Member = ({ name, surname, color, picture }) => {
+const Member = ({ name, surname, color, picture, defaultPosition }) => {
   return (
-    <Draggable>
+    <Draggable defaultPosition={{ x: defaultPosition.x, y: defaultPosition.y }}>
       {picture !== '' ? (
         <div
           className='member picture'

@@ -1,27 +1,14 @@
-import React from 'react';
+import { useState, useContext } from 'react';
 import Action from './Action';
 import { MdOutlineAddCircle, MdOutlineRemoveCircle } from 'react-icons/md';
+import { ActionContext } from '../contexts/ActionContext';
 
 const ActionsArea = () => {
-  const [actions, setActions] = React.useState([]);
+  const { actions, addAction, deleteAction } = useContext(ActionContext);
 
-  const [newTitle, setNewTitle] = React.useState('');
+  const [newTitle, setNewTitle] = useState('');
 
-  const [editMode, setEditMode] = React.useState(false);
-
-  const addAction = () => {
-    setActions([
-      ...actions,
-      {
-        title: newTitle,
-        id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
-      },
-    ]);
-  };
-
-  const deleteAction = (id) => {
-    setActions(actions.filter((action) => action.id !== id));
-  };
+  const [editMode, setEditMode] = useState(false);
 
   const toggleNew = () => {
     setEditMode(!editMode);
@@ -30,7 +17,7 @@ const ActionsArea = () => {
 
   const handleNewTitle = (e) => {
     if (e.charCode === 13) {
-      addAction();
+      addAction(newTitle);
     }
   };
 
