@@ -1,15 +1,19 @@
 import Member from './Member';
-import Members from '../data/members.json';
+import { useContext } from 'react';
+import { MembersContext } from '../contexts/MembersContext';
 
 const MembersArea = () => {
+  const { members } = useContext(MembersContext);
+
   return (
     <div className='membersArea'>
       <h1>Members</h1>
       <div className='bench'>
-        {Members.map((member) => (
+        {members.map((member) => (
           <Member
             key={member.id}
-            name={member.name}
+            id={member.id}
+            member={member.name}
             surname={member.surname}
             color={member.color}
             picture={member.picture}

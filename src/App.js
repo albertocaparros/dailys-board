@@ -1,8 +1,9 @@
 import Timeline from './components/timeline/Timeline';
 import SprintContextProvider from './components/contexts/SprintContext';
 import ActionContextProvider from './components/contexts/ActionContext';
+import MembersContextProvider from './components/contexts/MembersContext';
 import ActionsArea from './components/actions/ActionsArea';
-import MembersArea from './components/MembersArea';
+import MembersArea from './components/members/MembersArea';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <Timeline />
       </SprintContextProvider>
       <div className='main'>
-        <MembersArea></MembersArea>
+        <MembersContextProvider>
+          <MembersArea></MembersArea>
+        </MembersContextProvider>
         <ActionContextProvider>
           <ActionsArea></ActionsArea>
         </ActionContextProvider>
