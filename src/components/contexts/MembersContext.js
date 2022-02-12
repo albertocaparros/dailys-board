@@ -12,6 +12,22 @@ const MembersContextProvider = (props) => {
       picture: '/alberto.png',
       defaultPosition: { x: 0, y: 0 },
     },
+    {
+      name: 'Alberto',
+      surname: 'Caparrós',
+      color: 'steelblue',
+      id: 1,
+      picture: '/alberto.png',
+      defaultPosition: { x: 0, y: 0 },
+    },
+    {
+      name: 'Alberto',
+      surname: 'Caparrós',
+      color: 'steelblue',
+      id: 2,
+      picture: '/alberto.png',
+      defaultPosition: { x: 0, y: 0 },
+    },
   ];
   let [members, setMembers] = useState(localData);
 

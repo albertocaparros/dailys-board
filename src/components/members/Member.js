@@ -7,6 +7,11 @@ const Member = ({ name, surname, color, picture, id, defaultPosition }) => {
 
   return (
     <Draggable
+      axis='both'
+      position={{
+        x: defaultPosition.x,
+        y: defaultPosition.y,
+      }}
       onStop={(e, data) => {
         editMember({
           name,
