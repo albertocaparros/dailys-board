@@ -41,7 +41,7 @@ const Timeline = () => {
         className='percentage'
         percent={percentage}
         strokeWidth='2'
-        strokeColor='#4C83CA'
+        strokeColor='#4169e1'
       />
       <Stopwatch></Stopwatch>
     </div>

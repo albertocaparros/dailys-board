@@ -1,0 +1,20 @@
+.timeline {
+  flex-grow: 6;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.timeline div {
+  flex-grow: 1;
+}
+
+.numbers {
+  width: 150px;
+}
+
+.sprint-information {
+  width: 250px;
+}
