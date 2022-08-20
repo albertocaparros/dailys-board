@@ -70,7 +70,7 @@ const ActionsArea = () => {
       <div>
         {actions.map((action) => (
           <Action
-            key={actions.id}
+            key={action.id}
             title={action.title}
             body={action.body}
             deleteAction={deleteAction}

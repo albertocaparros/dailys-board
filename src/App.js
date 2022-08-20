@@ -8,7 +8,7 @@ import Improvement from './components/toasts/Improvement';
 
 function App() {
   return (
-    <div className='container w-full p-3 bg-blue-50'>
+    <div className='container w-full p-3 mx-auto bg-blue-50'>
       <Improvement></Improvement>
       <SprintContextProvider>
         <Timeline />

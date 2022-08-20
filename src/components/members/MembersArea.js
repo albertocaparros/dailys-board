@@ -65,7 +65,7 @@ const MembersArea = () => {
         ))}
       </div>
       {!editMode && (
-        <div className='flex flex-col mt-2 h-[65vh]'>
+        <div className='flex flex-col mt-2 h-[70vh]'>
           <div className='p-2 mx-1 my-1 bg-teal-400 border-2 border-black rounded-md h-1/2'>
             <p className='text-base font-medium'>Development</p>
           </div>

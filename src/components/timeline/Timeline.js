@@ -14,13 +14,13 @@ const Timeline = () => {
   );
 
   return (
-    <div className='flex flex-col mb-4'>
+    <div className='flex flex-col'>
       {!sprintInformation.edit && <SprintInformation />}
       {sprintInformation.edit && <SprintEdit />}
 
-      <div className='p-1 mt-2 mb-4'>
-        <p className='my-1 text-l'>Completed: {percentage}%</p>
+      <div className='p-1 mt-2 '>
         <Line percent={percentage} strokeWidth='4' strokeColor='#4169e1' />
+        <p className='mx-auto my-1 text-xl text-center'>{percentage}%</p>
       </div>
     </div>
   );
