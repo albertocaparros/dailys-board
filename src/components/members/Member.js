@@ -30,11 +30,13 @@ const Member = ({ name, surname, color, picture, id, defaultPosition }) => {
         defaultPosition={{ x: defaultPosition.x, y: defaultPosition.y }}>
         {picture !== '' ? (
           <div
-            className='member picture'
+            className='w-16 h-16 p-3 align-middle bg-center bg-no-repeat bg-cover border-2 border-gray-600 rounded-full cursor-grab'
             style={{ backgroundImage: 'url(' + picture + ')' }}></div>
         ) : (
-          <div className='member' style={{ backgroundColor: color }}>
-            <h2>{name[0] + surname[0]}</h2>
+          <div className='w-16 h-16 p-3 align-middle bg-red-400 border-2 border-gray-600 rounded-full cursor-grab'>
+            <p className='p-1 text-xl font-medium text-center'>
+              {name[0] + surname[0]}
+            </p>
           </div>
         )}
       </Draggable>

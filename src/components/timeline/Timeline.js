@@ -1,10 +1,8 @@
-import { useContext, useState } from 'react';
-import { FiEdit, FiEdit2 } from 'react-icons/fi';
+import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
-import SprintInformation from './SprintInfomation';
+import SprintInformation from './SprintInformation';
 import SprintEdit from './SprintEdit';
 import { Line } from 'rc-progress';
-import Stopwatch from './Stopwatch';
 
 const Timeline = () => {
   const { sprintInformation } = useContext(SprintContext);
@@ -15,35 +13,15 @@ const Timeline = () => {
       100
   );
 
-  const [edit, setEdit] = useState(false);
-  const toggleEdit = () => {
-    setEdit(!edit);
-  };
-
   return (
-    <div className='timeline'>
-      <div className='sprint-information'>
-        {!edit && (
-          <>
-            <FiEdit2 className='icon' onClick={toggleEdit} />
-            <SprintInformation />
-          </>
-        )}
-        {edit && (
-          <>
-            <FiEdit className='icon' onClick={toggleEdit} />
-            <SprintEdit />
-          </>
-        )}
+    <div className='flex flex-col mb-4'>
+      {!sprintInformation.edit && <SprintInformation />}
+      {sprintInformation.edit && <SprintEdit />}
+
+      <div className='p-1 mt-2 mb-4'>
+        <p className='my-1 text-l'>Completed: {percentage}%</p>
+        <Line percent={percentage} strokeWidth='4' strokeColor='#4169e1' />
       </div>
-      <h3>Completed: {percentage}%</h3>
-      <Line
-        className='percentage'
-        percent={percentage}
-        strokeWidth='2'
-        strokeColor='#4169e1'
-      />
-      <Stopwatch></Stopwatch>
     </div>
   );
 };

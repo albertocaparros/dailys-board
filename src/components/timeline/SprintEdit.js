@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
+import { FiEdit } from 'react-icons/fi';
 
 const SprintEdit = () => {
   const { sprintInformation, editSprintInformation } =
@@ -17,39 +18,53 @@ const SprintEdit = () => {
     editSprintInformation({ ...sprintInformation, end: new Date(end) });
   };
 
+  const toggleEdit = (edit) => {
+    editSprintInformation({
+      ...sprintInformation,
+      edit: !sprintInformation.edit,
+    });
+  };
+
   return (
-    <>
-      <div className='sprint-information'>
-        <h2>
-          Sprint{' '}
+    <div className='flex items-center gap-2'>
+      <div>
+        <p className='font-semibold text-l'>Sprint</p>
+        <input
+          className='block w-10 p-0 mx-auto text-xl font-semibold text-center bg-white border rounded'
+          type='text'
+          value={sprintInformation.sprint}
+          onChange={(e) => setSprint(e.target.value)}
+        />
+      </div>
+      <div className='self-center flex-1 '>
+        <div className='flex'>
           <input
-            size='1'
-            value={sprintInformation.sprint}
-            onChange={(e) => setSprint(e.target.value)}
-          />
-        </h2>
-        <p>
-          Start{' '}
-          <input
+            className='flex-auto text-center border rounded'
+            id='start'
             type='date'
             value={new Date(sprintInformation.start)
               .toISOString()
               .substring(0, 10)}
             onChange={(e) => setStartDate(e.target.value)}
           />
-        </p>
-        <p>
-          End{' '}
+        </div>
+        <div className='flex'>
           <input
+            className='flex-auto text-center border rounded'
+            id='end'
             type='date'
             value={new Date(sprintInformation.end)
               .toISOString()
               .substring(0, 10)}
             onChange={(e) => setEndDate(e.target.value)}
           />
-        </p>
+        </div>
       </div>
-    </>
+      <FiEdit
+        className='self-start ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700'
+        onClick={toggleEdit}
+      />
+    </div>
   );
 };
 export default SprintEdit;

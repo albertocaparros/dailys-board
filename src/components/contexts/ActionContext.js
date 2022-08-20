@@ -6,12 +6,14 @@ const ActionContextProvider = (props) => {
   const localData = JSON.parse(localStorage.getItem('actions')) || [];
   let [actions, setActions] = useState(localData);
 
-  const addAction = (newTitle) => {
+  const addAction = ({ newAction }) => {
+    console.log(newAction);
     setActions([
       ...actions,
       {
-        title: newTitle,
         id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
+        title: newAction.title,
+        body: newAction.body,
       },
     ]);
 
@@ -20,8 +22,9 @@ const ActionContextProvider = (props) => {
       JSON.stringify([
         ...actions,
         {
-          title: newTitle,
           id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
+          title: newAction.title,
+          body: newAction.body,
         },
       ])
     );

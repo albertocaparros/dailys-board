@@ -8,6 +8,7 @@ const SprintContextProvider = (props) => {
     end: new Date(),
     sprint: 1,
     developerDays: 1,
+    edit: false,
   };
   let [sprintInformation, setSprintInformation] = useState(localData);
 
@@ -19,6 +20,7 @@ const SprintContextProvider = (props) => {
         end: data.end,
         sprint: data.sprint,
         developerDays: data.developerDays,
+        edit: data.edit,
       })
     );
     setSprintInformation({
@@ -26,6 +28,7 @@ const SprintContextProvider = (props) => {
       end: data.end,
       sprint: data.sprint,
       developerDays: data.developerDays,
+      edit: data.edit,
     });
   };
 
