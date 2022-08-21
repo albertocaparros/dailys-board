@@ -6,8 +6,7 @@ const ActionContextProvider = (props) => {
   const localData = JSON.parse(localStorage.getItem('actions')) || [];
   let [actions, setActions] = useState(localData);
 
-  const addAction = ({ newAction }) => {
-    console.log(newAction);
+  const addAction = (newAction) => {
     setActions([
       ...actions,
       {

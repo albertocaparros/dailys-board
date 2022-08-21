@@ -1,83 +1,47 @@
 import { useState, useContext } from 'react';
 import Action from './Action';
-import { MdOutlineAddCircle, MdOutlineRemoveCircle } from 'react-icons/md';
-import { FiSave } from 'react-icons/fi';
+import { FiEdit, FiEdit2 } from 'react-icons/fi';
+import ActionsEdit from './ActionsEdit';
 import { ActionContext } from '../contexts/ActionContext';
 
 const ActionsArea = () => {
-  const { actions, addAction, deleteAction } = useContext(ActionContext);
-
-  const [newAction, setNewAction] = useState({});
+  const { actions } = useContext(ActionContext);
 
   const [editMode, setEditMode] = useState(false);
 
-  const toggleNew = () => {
+  const toggleEdit = () => {
     setEditMode(!editMode);
-    setNewAction({});
-  };
-
-  const handleSaveAction = () => {
-    if (newAction.title) {
-      addAction({ newAction });
-    }
   };
 
   return (
     <>
       <div className='flex items-center my-3'>
-        {editMode && (
-          <>
-            <MdOutlineRemoveCircle
-              className='mr-1 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700'
-              onClick={toggleNew}
-            />
-          </>
-        )}
+        <p className='flex-1 text-2xl lg:text-3xl'>Actions</p>
         {!editMode && (
-          <MdOutlineAddCircle
-            className='mr-1 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700'
-            onClick={toggleNew}
+          <FiEdit2
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
           />
         )}
-        <p className='flex-1 text-2xl'>Actions</p>
         {editMode && (
-          <FiSave
-            className='mr-auto text-2xl cursor-pointer hover:rotate-12 hover:text-teal-700'
-            onClick={handleSaveAction}></FiSave>
+          <FiEdit
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
+          />
         )}
       </div>
-      {editMode && (
-        <>
-          <input
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-2'
-            value={newAction.title}
-            onChange={(e) =>
-              setNewAction({ ...newAction, title: e.target.value })
-            }
-            placeholder='Title'
-            type='text'
-          />
-          <textarea
-            className='h-36 whitespace bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-2'
-            value={newAction.body}
-            onChange={(e) =>
-              setNewAction({ ...newAction, body: e.target.value })
-            }
-            placeholder='Body'
-          />
-        </>
-      )}
-      <div>
+      {editMode && <ActionsEdit />}
+      <div className='my-3 md:flex md:flex-row md:flex-wrap md:gap-2 md:my-5 lg:mx-12'>
         {actions.map((action) => (
           <Action
             key={action.id}
             title={action.title}
             body={action.body}
-            deleteAction={deleteAction}
             id={action.id}
             editMode={editMode}
           />
         ))}
+        {actions.length % 2 !== 0 && <Action></Action>}
       </div>
     </>
   );

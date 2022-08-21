@@ -16,11 +16,11 @@ const CustomToastWithLink = () => (
 
 const Improvement = ({ message }) => {
   useEffect(() => {
-    var lastReminder =
+    let lastReminder =
       JSON.parse(localStorage.getItem('improvementReminder')) ||
       new Date().getTime();
-    var now = new Date().getTime();
-    var dayInMs = 86400000;
+    let now = new Date().getTime();
+    let dayInMs = 86400000;
 
     if (now - lastReminder > dayInMs * 3) {
       notify();

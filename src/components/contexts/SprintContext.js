@@ -19,7 +19,6 @@ const SprintContextProvider = (props) => {
         start: data.start,
         end: data.end,
         sprint: data.sprint,
-        developerDays: data.developerDays,
         edit: data.edit,
       })
     );
@@ -27,7 +26,6 @@ const SprintContextProvider = (props) => {
       start: data.start,
       end: data.end,
       sprint: data.sprint,
-      developerDays: data.developerDays,
       edit: data.edit,
     });
   };
