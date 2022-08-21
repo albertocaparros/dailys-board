@@ -1,58 +1,49 @@
 import { useState, useContext } from 'react';
 import Action from './Action';
-import { MdOutlineAddCircle, MdOutlineRemoveCircle } from 'react-icons/md';
+import { FiEdit, FiEdit2 } from 'react-icons/fi';
+import ActionsEdit from './ActionsEdit';
 import { ActionContext } from '../contexts/ActionContext';
 
 const ActionsArea = () => {
-  const { actions, addAction, deleteAction } = useContext(ActionContext);
-
-  const [newTitle, setNewTitle] = useState('');
+  const { actions } = useContext(ActionContext);
 
   const [editMode, setEditMode] = useState(false);
 
-  const toggleNew = () => {
+  const toggleEdit = () => {
     setEditMode(!editMode);
-    setNewTitle('');
-  };
-
-  const handleNewTitle = (e) => {
-    if (e.charCode === 13) {
-      addAction(newTitle);
-    }
   };
 
   return (
-    <div className='actionsArea'>
-      <h1>
-        Actions{' '}
-        {editMode && (
-          <>
-            <MdOutlineRemoveCircle className='icon' onClick={toggleNew} />{' '}
-            <input
-              className='new-title'
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value)}
-              onKeyPress={handleNewTitle}
-              type='text'></input>
-          </>
-        )}
+    <>
+      <div className='flex items-center my-3'>
+        <p className='flex-1 text-2xl lg:text-3xl'>Actions</p>
         {!editMode && (
-          <MdOutlineAddCircle className='icon' onClick={toggleNew} />
+          <FiEdit2
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
+          />
         )}
-      </h1>
-
-      <div className='workArea'>
+        {editMode && (
+          <FiEdit
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
+          />
+        )}
+      </div>
+      {editMode && <ActionsEdit />}
+      <div className='my-3 md:flex md:flex-row md:flex-wrap md:gap-2 md:my-5 lg:mx-12'>
         {actions.map((action) => (
           <Action
-            key={actions.id}
+            key={action.id}
             title={action.title}
-            deleteAction={deleteAction}
+            body={action.body}
             id={action.id}
             editMode={editMode}
           />
         ))}
+        {actions.length % 2 !== 0 && <Action></Action>}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,44 +1,41 @@
 import Member from './Member';
 import { useContext, useState } from 'react';
 import { MembersContext } from '../contexts/MembersContext';
-import { MdHomeFilled, MdDelete } from 'react-icons/md';
+import { MdHomeFilled } from 'react-icons/md';
 import { FiEdit, FiEdit2 } from 'react-icons/fi';
+import Work from './Work';
+import MembersEdit from './MembersEdit';
 
 const MembersArea = () => {
-  const { members, homeMembers, addMember, deleteMember } =
-    useContext(MembersContext);
+  const { members, homeMembers } = useContext(MembersContext);
   const [editMode, setEditMode] = useState(false);
-  const [newMember] = useState({});
 
   const toggleEdit = () => {
     setEditMode(!editMode);
-  };
-
-  const saveNewMember = (e) => {
-    e.preventDefault();
-
-    var member = {
-      name: e.target.name.value,
-      surname: e.target.surname.value,
-      color: 'steelblue',
-      id: members.length !== 0 ? members[members.length - 1].id + 1 : 0,
-      picture: e.target.picture.value,
-      defaultPosition: { x: 0, y: 0 },
-    };
-
-    addMember(member);
     homeMembers();
   };
 
   return (
-    <div className='membersArea'>
-      <h1>
-        Members
-        <MdHomeFilled className='icon' onClick={homeMembers}></MdHomeFilled>
-        {!editMode && <FiEdit2 className='icon' onClick={toggleEdit} />}{' '}
-        {editMode && <FiEdit className='icon' onClick={toggleEdit} />}
-      </h1>
-      <div className='bench'>
+    <div>
+      <div className='flex items-center mt-3 mb-3'>
+        <MdHomeFilled
+          className='mr-1 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+          onClick={homeMembers}></MdHomeFilled>
+        <p className='flex-1 text-2xl lg:text-3xl'>Members</p>
+        {!editMode && (
+          <FiEdit2
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
+          />
+        )}
+        {editMode && (
+          <FiEdit
+            className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+            onClick={toggleEdit}
+          />
+        )}
+      </div>
+      <div className='flex flex-wrap'>
         {members.map((member) => (
           <Member
             key={member.id}
@@ -53,60 +50,14 @@ const MembersArea = () => {
         ))}
       </div>
       {!editMode && (
-        <div className='workArea'>
-          <div className='development area'>
-            <b>Development</b>
-          </div>
-          <div className='testing area'>
-            <b>Testing</b>
-          </div>
-          <div className='functional area'>
-            <b>Functional</b>
-          </div>
-          <div className='documentation area'>
-            <b>Documentation</b>
-          </div>
+        <div className='flex flex-col my-3 h-[70vh] md:flex-row md:flex-wrap md:gap-2 md:my-5 lg:mx-12 md:h-96'>
+          <Work color={'bg-teal-400'} area={'Development'} />
+          <Work color={'bg-sky-400'} area={'Testing'} />
+          <Work color={'bg-blue-400'} area={'Functional'} />
+          <Work color={'bg-indigo-400'} area={'Documentation'} />
         </div>
       )}
-      {editMode && (
-        <>
-          <div>
-            <form onSubmit={saveNewMember}>
-              <h3>Add new member:</h3>
-              <input
-                name='name'
-                className='new-title'
-                value={newMember.name}
-                type='text'
-                placeholder='Name'></input>
-              <input
-                name='surname'
-                className='new-title'
-                value={newMember.surname}
-                type='text'
-                placeholder='Surname'></input>
-              <input
-                name='picture'
-                className='new-title'
-                value={newMember.picture}
-                type='text'
-                placeholder='Picture'></input>
-              <button type='submit'>Save</button>
-            </form>
-          </div>
-          <ul>
-            {members.map((member) => (
-              <li key={member.id}>
-                {member.name} {member.surname} - {member.id}{' '}
-                <MdDelete
-                  className='icon'
-                  onClick={() => deleteMember(member.id)}
-                />
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      {editMode && <MembersEdit />}
     </div>
   );
 };

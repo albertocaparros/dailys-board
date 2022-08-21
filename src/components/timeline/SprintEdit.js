@@ -1,55 +1,73 @@
 import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
+import { FiEdit } from 'react-icons/fi';
 
 const SprintEdit = () => {
   const { sprintInformation, editSprintInformation } =
     useContext(SprintContext);
 
-  const setSprint = (sprint) => {
-    editSprintInformation({ ...sprintInformation, sprint });
-  };
-
-  const setStartDate = (start) => {
-    editSprintInformation({ ...sprintInformation, start: new Date(start) });
-  };
-
-  const setEndDate = (end) => {
-    editSprintInformation({ ...sprintInformation, end: new Date(end) });
+  const toggleEdit = () => {
+    editSprintInformation({
+      ...sprintInformation,
+      edit: !sprintInformation.edit,
+    });
   };
 
   return (
-    <>
-      <div className='sprint-information'>
-        <h2>
-          Sprint{' '}
+    <div className='flex items-center gap-2 md:gap-4 md:w-2/5'>
+      <div>
+        <p className='font-semibold text-l lg:text-2xl'>Sprint</p>
+        <input
+          className='block w-10 p-0 mx-auto text-xl font-semibold text-center bg-white border rounded lg:text-2xl'
+          type='text'
+          value={sprintInformation.sprint}
+          onChange={(e) =>
+            editSprintInformation({
+              ...sprintInformation,
+              sprint: e.target.value,
+            })
+          }
+        />
+      </div>
+      <div className='self-center flex-1'>
+        <div className='flex md:my-1'>
           <input
-            size='1'
-            value={sprintInformation.sprint}
-            onChange={(e) => setSprint(e.target.value)}
-          />
-        </h2>
-        <p>
-          Start{' '}
-          <input
+            className='flex-auto text-center border rounded lg:text-xl'
+            id='start'
             type='date'
             value={new Date(sprintInformation.start)
               .toISOString()
               .substring(0, 10)}
-            onChange={(e) => setStartDate(e.target.value)}
+            onChange={(e) =>
+              editSprintInformation({
+                ...sprintInformation,
+                start: new Date(e.target.value),
+              })
+            }
           />
-        </p>
-        <p>
-          End{' '}
+        </div>
+        <div className='flex'>
           <input
+            className='flex-auto text-center border rounded lg:text-xl'
+            id='end'
             type='date'
             value={new Date(sprintInformation.end)
               .toISOString()
               .substring(0, 10)}
-            onChange={(e) => setEndDate(e.target.value)}
+            onChange={(e) =>
+              editSprintInformation({
+                ...sprintInformation,
+                end: new Date(e.target.value),
+              })
+            }
           />
-        </p>
+        </div>
       </div>
-    </>
+      <FiEdit
+        className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
+        onClick={toggleEdit}
+      />
+    </div>
   );
 };
 export default SprintEdit;
