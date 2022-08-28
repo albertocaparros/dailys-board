@@ -19,12 +19,14 @@ const ActionsArea = () => {
         <p className='flex-1 text-2xl lg:text-3xl'>Actions</p>
         {!editMode && (
           <FiEdit2
+            data-cy='actions-enable-edit'
             className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
             onClick={toggleEdit}
           />
         )}
         {editMode && (
           <FiEdit
+            data-cy='actions-disable-edit'
             className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
             onClick={toggleEdit}
           />

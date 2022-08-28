@@ -6,10 +6,10 @@ const SprintShow = () => {
   const { sprintInformation, editSprintInformation } =
     useContext(SprintContext);
 
-  const toggleEdit = () => {
+  const handleEnableEdit = () => {
     editSprintInformation({
       ...sprintInformation,
-      edit: !sprintInformation.edit,
+      edit: true,
     });
   };
 
@@ -39,8 +39,9 @@ const SprintShow = () => {
         </div>
       </div>
       <FiEdit2
+        data-cy='timeline-enable-edit'
         className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
-        onClick={toggleEdit}
+        onClick={handleEnableEdit}
       />
     </div>
   );

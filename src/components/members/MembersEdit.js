@@ -7,21 +7,26 @@ function MembersEdit() {
   const { members, homeMembers, addMember, deleteMember } =
     useContext(MembersContext);
 
-  const [newMember] = useState({});
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [picture, setPicture] = useState('');
 
   const saveNewMember = (e) => {
     e.preventDefault();
 
     let member = {
-      name: e.target.name.value,
-      surname: e.target.surname.value,
+      name: name,
+      surname: surname,
       color: 'steelblue',
       id: members.length !== 0 ? members[members.length - 1].id + 1 : 0,
-      picture: e.target.picture.value,
+      picture: picture,
       defaultPosition: { x: 0, y: 0 },
     };
 
     addMember(member);
+    setName('');
+    setSurname('');
+    setPicture('');
     homeMembers();
   };
 
@@ -36,19 +41,22 @@ function MembersEdit() {
         <input
           name='name'
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-2'
-          value={newMember.name}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           type='text'
           placeholder='Name'></input>
         <input
           name='surname'
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-2'
-          value={newMember.surname}
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
           type='text'
           placeholder='Surname'></input>
         <input
           name='picture'
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 my-2'
-          value={newMember.picture}
+          value={picture}
+          onChange={(e) => setPicture(e.target.value)}
           type='text'
           placeholder='Picture'></input>
         <button
@@ -64,6 +72,7 @@ function MembersEdit() {
         {members.map((member) => (
           <li key={member.id} className='flex items-center text-xl'>
             <MdDelete
+              data-cy='delete-member'
               className='text-2xl cursor-pointer hover:rotate-12 hover:text-teal-700 md:ml-1'
               onClick={() => deleteMember(member.id)}
             />
