@@ -64,6 +64,7 @@ const SprintEdit = () => {
         </div>
       </div>
       <FiEdit
+        data-cy='timeline-disable-edit'
         className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
         onClick={toggleEdit}
       />

@@ -31,11 +31,14 @@ const Member = ({ name, surname, color, picture, id, defaultPosition }) => {
         {picture !== '' ? (
           <div
             className='w-16 h-16 p-3 align-middle bg-center bg-no-repeat bg-cover border-2 border-gray-600 rounded-full md:w-20 md:h-20 cursor-grab'
-            style={{ backgroundImage: 'url(' + picture + ')' }}></div>
+            style={{ backgroundImage: 'url(' + picture + ')' }}
+            alt='member picture'></div>
         ) : (
-          <div className='w-16 h-16 p-3 align-middle bg-red-400 border-2 border-gray-600 rounded-full md:w-20 md:h-20 cursor-grab'>
+          <div
+            data-cy='draggable-member'
+            className='w-16 h-16 p-3 align-middle bg-red-400 border-2 border-gray-600 rounded-full md:w-20 md:h-20 cursor-grab'>
             <p className='p-1 text-xl font-medium text-center'>
-              {name[0] + surname[0]}
+              {name[0].toUpperCase() + surname[0].toUpperCase()}
             </p>
           </div>
         )}
