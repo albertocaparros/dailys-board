@@ -7,42 +7,24 @@ const MembersContextProvider = (props) => {
   let [members, setMembers] = useState(localData);
 
   const editMember = (editedMember) => {
-    setMembers(
-      members.map((oldMember) => {
-        if (editedMember.id === oldMember.id) {
-          return editedMember;
-        }
-        return oldMember;
-      })
-    );
+    const newMembers = members.map((oldMember) => {
+      if (editedMember.id === oldMember.id) {
+        return editedMember;
+      }
+      return oldMember;
+    });
 
-    localStorage.setItem(
-      'members',
-      JSON.stringify(
-        members.map((oldMember) => {
-          if (editedMember.id === oldMember.id) {
-            return editedMember;
-          }
-          return oldMember;
-        })
-      )
-    );
+    setMembers(newMembers);
+    localStorage.setItem('members', JSON.stringify(newMembers));
   };
 
   const homeMembers = () => {
-    setMembers(
-      members.map((member) => {
-        return { ...member, defaultPosition: { x: 0, y: 0 } };
-      })
-    );
-    localStorage.setItem(
-      'members',
-      JSON.stringify(
-        members.map((member) => {
-          return { ...member, defaultPosition: { x: 0, y: 0 } };
-        })
-      )
-    );
+    const newMembers = members.map((member) => {
+      return { ...member, defaultPosition: { x: 0, y: 0 } };
+    });
+
+    setMembers(newMembers);
+    localStorage.setItem('members', JSON.stringify(newMembers));
   };
 
   const addMember = (newMember) => {
@@ -54,11 +36,22 @@ const MembersContextProvider = (props) => {
   };
 
   const deleteMember = (id) => {
-    setMembers(members.filter((member) => member.id !== id));
-    localStorage.setItem(
-      'members',
-      JSON.stringify(members.filter((member) => member.id !== id))
-    );
+    const newMembers = members.filter((member) => member.id !== id);
+
+    setMembers(newMembers);
+    localStorage.setItem('members', JSON.stringify(newMembers));
+  };
+
+  const setPosition = (id, position) => {
+    const newMembers = members.map((member) => {
+      if (member.id === id) {
+        member.defaultPosition = position;
+      }
+      return member;
+    });
+
+    setMembers(newMembers);
+    localStorage.setItem('members', JSON.stringify(newMembers));
   };
 
   return (
@@ -69,6 +62,7 @@ const MembersContextProvider = (props) => {
         homeMembers,
         addMember,
         deleteMember,
+        setPosition,
       }}>
       {props.children}
     </MembersContext.Provider>

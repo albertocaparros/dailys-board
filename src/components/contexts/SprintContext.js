@@ -7,27 +7,54 @@ const SprintContextProvider = (props) => {
     start: new Date(),
     end: new Date(),
     sprint: 1,
-    developerDays: 1,
-    edit: false,
   };
   let [sprintInformation, setSprintInformation] = useState(localData);
 
   const editSprintInformation = (data) => {
+    setSprintInformation({
+      start: data.start,
+      end: data.end,
+      sprint: data.sprint,
+    });
+
     localStorage.setItem(
       'sprintInformation',
       JSON.stringify({
         start: data.start,
         end: data.end,
         sprint: data.sprint,
-        edit: data.edit,
       })
     );
-    setSprintInformation({
-      start: data.start,
-      end: data.end,
-      sprint: data.sprint,
-      edit: data.edit,
-    });
+  };
+
+  const setSprint = (newSprint) => {
+    const newSprintInformation = { ...sprintInformation, sprint: newSprint };
+
+    setSprintInformation(newSprintInformation);
+    localStorage.setItem(
+      'sprintInformation',
+      JSON.stringify(newSprintInformation)
+    );
+  };
+
+  const setStartDate = (newStartDate) => {
+    const newSprintInformation = { ...sprintInformation, start: newStartDate };
+
+    setSprintInformation(newSprintInformation);
+    localStorage.setItem(
+      'sprintInformation',
+      JSON.stringify(newSprintInformation)
+    );
+  };
+
+  const setEndDate = (newEndDate) => {
+    const newSprintInformation = { ...sprintInformation, end: newEndDate };
+
+    setSprintInformation(newSprintInformation);
+    localStorage.setItem(
+      'sprintInformation',
+      JSON.stringify(newSprintInformation)
+    );
   };
 
   return (
@@ -35,6 +62,9 @@ const SprintContextProvider = (props) => {
       value={{
         editSprintInformation,
         sprintInformation,
+        setSprint,
+        setStartDate,
+        setEndDate,
       }}>
       {props.children}
     </SprintContext.Provider>

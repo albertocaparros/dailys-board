@@ -7,35 +7,23 @@ const ActionContextProvider = (props) => {
   let [actions, setActions] = useState(localData);
 
   const addAction = (newAction) => {
-    setActions([
-      ...actions,
-      {
-        id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
-        title: newAction.title,
-        body: newAction.body,
-      },
-    ]);
+    let newActions = actions;
+    newActions.push({
+      id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
+      title: newAction.title,
+      body: newAction.body,
+    });
 
-    localStorage.setItem(
-      'actions',
-      JSON.stringify([
-        ...actions,
-        {
-          id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
-          title: newAction.title,
-          body: newAction.body,
-        },
-      ])
-    );
+    setActions(newActions);
+
+    localStorage.setItem('actions', JSON.stringify(newActions));
   };
 
   const deleteAction = (id) => {
-    setActions(actions.filter((action) => action.id !== id));
+    const newActions = actions.filter((action) => action.id !== id);
 
-    localStorage.setItem(
-      'actions',
-      JSON.stringify(actions.filter((action) => action.id !== id))
-    );
+    setActions(newActions);
+    localStorage.setItem('actions', JSON.stringify(newActions));
   };
 
   return (

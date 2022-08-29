@@ -1,15 +1,13 @@
 import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
 import { Line } from 'rc-progress';
+import { getPercentage } from './utils/calculations';
 
 function ProgressBar() {
   const { sprintInformation } = useContext(SprintContext);
+  const { start, end } = sprintInformation;
 
-  let percentage = Math.round(
-    ((new Date() - new Date(sprintInformation.start)) /
-      (new Date(sprintInformation.end) - new Date(sprintInformation.start))) *
-      100
-  );
+  const percentage = getPercentage(start, end);
   const percentageIsCorrect = percentage >= 0 && percentage <= 110;
 
   return (
