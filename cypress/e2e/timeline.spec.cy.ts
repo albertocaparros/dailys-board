@@ -8,14 +8,14 @@ describe('Timeline functionality', () => {
   });
 
   it('Goes to edit mode when clicking edit button', () => {
-    cy.get('[data-cy="timeline-enable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.get('input[type=date]').should('exist');
   });
 
   it('Goes back to show mode when clicking disable edit button', () => {
-    cy.get('[data-cy="timeline-enable-edit"]').click();
-    cy.get('[data-cy="timeline-disable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.get('input[type=date]').should('not.exist');
   });
@@ -23,10 +23,10 @@ describe('Timeline functionality', () => {
   it('Shows the new sprint value after editing sprint', () => {
     const newSprintValue = 'dummyValue';
 
-    cy.get('[data-cy="timeline-enable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
     cy.get('input[type=text]').clear();
     cy.get('input[type=text]').type(newSprintValue);
-    cy.get('[data-cy="timeline-disable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.contains(newSprintValue);
   });
@@ -35,14 +35,14 @@ describe('Timeline functionality', () => {
     const newStartDate = new Date('2002-07-15');
     const newEndDate = new Date('2002-07-22');
 
-    cy.get('[data-cy="timeline-enable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
     cy.get('input[type=date]')
       .first()
       .type(newStartDate.toISOString().split('T')[0]);
     cy.get('input[type=date]')
       .last()
       .type(newEndDate.toISOString().split('T')[0]);
-    cy.get('[data-cy="timeline-disable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.contains(
       newStartDate.toLocaleDateString('en-US', {
@@ -60,14 +60,14 @@ describe('Timeline functionality', () => {
     const newStartDate = new Date('2002-07-22');
     const newEndDate = new Date('2002-07-15');
 
-    cy.get('[data-cy="timeline-enable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
     cy.get('input[type=date]')
       .first()
       .type(newStartDate.toISOString().split('T')[0]);
     cy.get('input[type=date]')
       .last()
       .type(newEndDate.toISOString().split('T')[0]);
-    cy.get('[data-cy="timeline-disable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.contains('Dates are set incorrectly');
   });
@@ -78,14 +78,14 @@ describe('Timeline functionality', () => {
     let newEndDate = new Date();
     newEndDate.setDate(newEndDate.getDate() + 5);
 
-    cy.get('[data-cy="timeline-enable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
     cy.get('input[type=date]')
       .first()
       .type(newStartDate.toISOString().split('T')[0]);
     cy.get('input[type=date]')
       .last()
       .type(newEndDate.toISOString().split('T')[0]);
-    cy.get('[data-cy="timeline-disable-edit"]').click();
+    cy.get('p').contains('Sprint information').next().click();
 
     cy.contains('Dates are set incorrectly').should('not.exist');
   });

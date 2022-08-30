@@ -8,7 +8,7 @@ describe('Actions functiality', () => {
   });
 
   it('Goes to edit mode when clicking edit button', () => {
-    cy.get('[data-cy="members-enable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('p').contains('Add new member').should('exist');
     cy.get('input[placeholder=Name]').should('exist');
@@ -17,8 +17,8 @@ describe('Actions functiality', () => {
   });
 
   it('Goes back to show mode when clicking disable edit button', () => {
-    cy.get('[data-cy="members-enable-edit"]').click();
-    cy.get('[data-cy="members-disable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('p').contains('Add new member').should('not.exist');
     cy.get('input[placeholder=Name]').should('not.exist');
@@ -31,12 +31,13 @@ describe('Actions functiality', () => {
     const surname = 'dummySurname';
     const picture = 'dummyPicture';
 
-    cy.get('[data-cy="members-enable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('input[placeholder=Name]').type(name);
     cy.get('input[placeholder=Surname]').type(surname);
     cy.get('input[placeholder=Picture]').type(picture);
     cy.contains('Save').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('div[alt="member picture"')
       .should('have.css', 'background-image')
@@ -47,11 +48,12 @@ describe('Actions functiality', () => {
     const name = 'ñdummyName';
     const surname = 'zdummySurname';
 
-    cy.get('[data-cy="members-enable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('input[placeholder=Name]').type(name);
     cy.get('input[placeholder=Surname]').type(surname);
     cy.contains('Save').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('p').contains(name[0].toUpperCase() + surname[0].toUpperCase());
   });
@@ -63,13 +65,14 @@ describe('Actions functiality', () => {
       { name: 'alberto', surname: 'caparros' },
     ];
 
-    cy.get('[data-cy="members-enable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
     membersToInsert.forEach((member) => {
       cy.get('input[placeholder=Name]').type(member.name);
       cy.get('input[placeholder=Surname]').type(member.surname);
       cy.contains('Save').click();
     });
     cy.get('[data-cy="delete-member"]').eq(1).click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('p').contains(membersToInsert[1].name).should('not.exist');
     cy.get('p').contains(membersToInsert[1].surname).should('not.exist');
@@ -85,11 +88,12 @@ describe('Actions functiality', () => {
     const name = 'ñdummyName';
     const surname = 'zdummySurname';
 
-    cy.get('[data-cy="members-enable-edit"]').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('input[placeholder=Name]').type(name);
     cy.get('input[placeholder=Surname]').type(surname);
     cy.contains('Save').click();
+    cy.get('p').contains('Members').next().click();
 
     cy.get('[data-cy="draggable-member"]').should(
       'have.css',

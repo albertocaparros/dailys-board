@@ -8,15 +8,15 @@ describe('Actions functiality', () => {
   });
 
   it('Goes to edit mode when clicking edit button', () => {
-    cy.get('[data-cy="actions-enable-edit"]').click();
+    cy.get('p').contains('Actions').next().click();
 
     cy.get('input[placeholder=Title]').should('exist');
     cy.get('textarea[placeholder=Body]').should('exist');
   });
 
   it('Goes back to show mode when clicking disable edit button', () => {
-    cy.get('[data-cy="actions-enable-edit"]').click();
-    cy.get('[data-cy="actions-disable-edit"]').click();
+    cy.get('p').contains('Actions').next().click();
+    cy.get('p').contains('Actions').next().click();
 
     cy.get('input[placeholder=Title]').should('not.exist');
     cy.get('textarea[placeholder=Body]').should('not.exist');
@@ -26,10 +26,11 @@ describe('Actions functiality', () => {
     const newTitle = 'Dummy new title for Cypress';
     const newBody = 'Dummy new body for Cypress';
 
-    cy.get('[data-cy="actions-enable-edit"]').click();
+    cy.get('p').contains('Actions').next().click();
     cy.get('input[placeholder=Title]').type(newTitle);
     cy.get('textarea[placeholder=Body]').type(newBody);
     cy.contains('Save').click();
+    cy.get('p').contains('Actions').next().click();
 
     cy.contains(newTitle).should('exist');
     cy.contains(newBody).should('exist');
@@ -39,10 +40,11 @@ describe('Actions functiality', () => {
     const newTitle = 'Dummy new title for Cypress';
     const newBody = 'Dummy new body for Cypress';
 
-    cy.get('[data-cy="actions-enable-edit"]').click();
+    cy.get('p').contains('Actions').next().click();
 
     cy.get('textarea[placeholder=Body]').type(newBody);
     cy.contains('Save').click();
+    cy.get('p').contains('Actions').next().click();
 
     cy.get('p').contains(newTitle).should('not.exist');
     cy.get('p').contains(newBody).should('not.exist');

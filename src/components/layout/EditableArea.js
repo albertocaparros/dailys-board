@@ -14,14 +14,12 @@ function EditableArea({ title, children }) {
         <p className='flex-1 text-2xl lg:text-3xl'>{title}</p>
         {!editMode && (
           <FiEdit2
-            data-cy='members-enable-edit'
             className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
             onClick={toggleEdit}
           />
         )}
         {editMode && (
           <FiEdit
-            data-cy='members-disable-edit'
             className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
             onClick={toggleEdit}
           />
