@@ -1,9 +1,12 @@
 import { createContext, useState } from 'react';
+import { getData, setData } from './services/externalData';
 
 export const MembersContext = createContext();
 
 const MembersContextProvider = (props) => {
-  const localData = JSON.parse(localStorage.getItem('members')) || [];
+  const dataKey = 'members';
+
+  const localData = getData(dataKey) || [];
   let [members, setMembers] = useState(localData);
 
   const editMember = (editedMember) => {
@@ -15,7 +18,7 @@ const MembersContextProvider = (props) => {
     });
 
     setMembers(newMembers);
-    localStorage.setItem('members', JSON.stringify(newMembers));
+    setData(dataKey, newMembers);
   };
 
   const homeMembers = () => {
@@ -24,7 +27,7 @@ const MembersContextProvider = (props) => {
     });
 
     setMembers(newMembers);
-    localStorage.setItem('members', JSON.stringify(newMembers));
+    setData(dataKey, newMembers);
   };
 
   const addMember = (newMember) => {
@@ -32,14 +35,14 @@ const MembersContextProvider = (props) => {
     newMembersArray.push(newMember);
 
     setMembers(newMembersArray);
-    localStorage.setItem('members', JSON.stringify(newMembersArray));
+    setData(dataKey, newMembersArray);
   };
 
   const deleteMember = (id) => {
     const newMembers = members.filter((member) => member.id !== id);
 
     setMembers(newMembers);
-    localStorage.setItem('members', JSON.stringify(newMembers));
+    setData(dataKey, newMembers);
   };
 
   const setPosition = (id, position) => {
@@ -51,7 +54,7 @@ const MembersContextProvider = (props) => {
     });
 
     setMembers(newMembers);
-    localStorage.setItem('members', JSON.stringify(newMembers));
+    setData(dataKey, newMembers);
   };
 
   return (

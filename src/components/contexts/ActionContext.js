@@ -1,9 +1,12 @@
 import { createContext, useState } from 'react';
+import { getData, setData } from './services/externalData';
 
 export const ActionContext = createContext();
 
 const ActionContextProvider = (props) => {
-  const localData = JSON.parse(localStorage.getItem('actions')) || [];
+  const dataKey = 'actions';
+
+  const localData = getData(dataKey) || [];
   let [actions, setActions] = useState(localData);
 
   const addAction = (newAction) => {
@@ -15,15 +18,14 @@ const ActionContextProvider = (props) => {
     });
 
     setActions(newActions);
-
-    localStorage.setItem('actions', JSON.stringify(newActions));
+    setData(dataKey, newActions);
   };
 
   const deleteAction = (id) => {
     const newActions = actions.filter((action) => action.id !== id);
 
     setActions(newActions);
-    localStorage.setItem('actions', JSON.stringify(newActions));
+    setData(dataKey, newActions);
   };
 
   return (
