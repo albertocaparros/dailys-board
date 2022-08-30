@@ -1,17 +1,9 @@
 import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
-import { FiEdit } from 'react-icons/fi';
 
 const SprintEdit = () => {
-  const { sprintInformation, editSprintInformation } =
+  const { sprintInformation, setSprint, setStartDate, setEndDate } =
     useContext(SprintContext);
-
-  const toggleEdit = () => {
-    editSprintInformation({
-      ...sprintInformation,
-      edit: !sprintInformation.edit,
-    });
-  };
 
   return (
     <div className='flex items-center gap-2 md:gap-4 md:w-2/5'>
@@ -21,12 +13,7 @@ const SprintEdit = () => {
           className='block w-10 p-0 mx-auto text-xl font-semibold text-center bg-white border rounded lg:text-2xl'
           type='text'
           value={sprintInformation.sprint}
-          onChange={(e) =>
-            editSprintInformation({
-              ...sprintInformation,
-              sprint: e.target.value,
-            })
-          }
+          onChange={(e) => setSprint(e.target.value)}
         />
       </div>
       <div className='self-center flex-1'>
@@ -38,12 +25,7 @@ const SprintEdit = () => {
             value={new Date(sprintInformation.start)
               .toISOString()
               .substring(0, 10)}
-            onChange={(e) =>
-              editSprintInformation({
-                ...sprintInformation,
-                start: new Date(e.target.value),
-              })
-            }
+            onChange={(e) => setStartDate(new Date(e.target.value))}
           />
         </div>
         <div className='flex'>
@@ -54,20 +36,10 @@ const SprintEdit = () => {
             value={new Date(sprintInformation.end)
               .toISOString()
               .substring(0, 10)}
-            onChange={(e) =>
-              editSprintInformation({
-                ...sprintInformation,
-                end: new Date(e.target.value),
-              })
-            }
+            onChange={(e) => setEndDate(new Date(e.target.value))}
           />
         </div>
       </div>
-      <FiEdit
-        data-cy='timeline-disable-edit'
-        className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
-        onClick={toggleEdit}
-      />
     </div>
   );
 };

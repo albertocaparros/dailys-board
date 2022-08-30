@@ -2,18 +2,11 @@ import Draggable from 'react-draggable';
 import { useContext } from 'react';
 import { MembersContext } from '../contexts/MembersContext';
 
-const Member = ({ name, surname, color, picture, id, defaultPosition }) => {
-  const { editMember } = useContext(MembersContext);
+const Member = ({ name, surname, picture, id, defaultPosition }) => {
+  const { setPosition } = useContext(MembersContext);
 
   const handleStop = (e, data) => {
-    editMember({
-      name,
-      surname,
-      color,
-      id,
-      picture,
-      defaultPosition: { x: data.x, y: data.y },
-    });
+    setPosition(id, { x: data.x, y: data.y });
   };
 
   return (

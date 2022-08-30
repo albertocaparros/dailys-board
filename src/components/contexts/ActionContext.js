@@ -1,41 +1,31 @@
 import { createContext, useState } from 'react';
+import { getData, setData } from './services/externalData';
 
 export const ActionContext = createContext();
 
 const ActionContextProvider = (props) => {
-  const localData = JSON.parse(localStorage.getItem('actions')) || [];
+  const dataKey = 'actions';
+
+  const localData = getData(dataKey) || [];
   let [actions, setActions] = useState(localData);
 
   const addAction = (newAction) => {
-    setActions([
-      ...actions,
-      {
-        id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
-        title: newAction.title,
-        body: newAction.body,
-      },
-    ]);
+    let newActions = actions;
+    newActions.push({
+      id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
+      title: newAction.title,
+      body: newAction.body,
+    });
 
-    localStorage.setItem(
-      'actions',
-      JSON.stringify([
-        ...actions,
-        {
-          id: actions.length !== 0 ? actions[actions.length - 1].id + 1 : 0,
-          title: newAction.title,
-          body: newAction.body,
-        },
-      ])
-    );
+    setActions(newActions);
+    setData(dataKey, newActions);
   };
 
   const deleteAction = (id) => {
-    setActions(actions.filter((action) => action.id !== id));
+    const newActions = actions.filter((action) => action.id !== id);
 
-    localStorage.setItem(
-      'actions',
-      JSON.stringify(actions.filter((action) => action.id !== id))
-    );
+    setActions(newActions);
+    setData(dataKey, newActions);
   };
 
   return (

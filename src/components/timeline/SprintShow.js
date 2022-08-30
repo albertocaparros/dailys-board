@@ -1,17 +1,8 @@
 import { useContext } from 'react';
 import { SprintContext } from '../contexts/SprintContext';
-import { FiEdit2 } from 'react-icons/fi';
 
 const SprintShow = () => {
-  const { sprintInformation, editSprintInformation } =
-    useContext(SprintContext);
-
-  const handleEnableEdit = () => {
-    editSprintInformation({
-      ...sprintInformation,
-      edit: true,
-    });
-  };
+  const { sprintInformation } = useContext(SprintContext);
 
   return (
     <div className='flex items-center gap-2 md:w-2/5'>
@@ -38,11 +29,6 @@ const SprintShow = () => {
           </p>
         </div>
       </div>
-      <FiEdit2
-        data-cy='timeline-enable-edit'
-        className='ml-4 text-2xl transition-transform cursor-pointer hover:rotate-12 hover:text-teal-700 lg:text-3xl'
-        onClick={handleEnableEdit}
-      />
     </div>
   );
 };
