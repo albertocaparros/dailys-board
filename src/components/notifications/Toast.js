@@ -14,7 +14,7 @@ const CustomToastWithLink = () => (
   </div>
 );
 
-const Improvement = ({ message }) => {
+const Toast = ({ message }) => {
   useEffect(() => {
     let lastReminder =
       JSON.parse(localStorage.getItem('improvementReminder')) ||
@@ -58,4 +58,4 @@ const Improvement = ({ message }) => {
   );
 };
 
-export default Improvement;
+export default Toast;

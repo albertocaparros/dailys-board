@@ -4,13 +4,14 @@ import MembersContextProvider from './components/contexts/MembersContext';
 import ActionsArea from './components/actions/ActionsArea';
 import MembersArea from './components/members/MembersArea';
 import TimelineArea from './components/timeline/TimelineArea';
-import Improvement from './components/toasts/Improvement';
+import Toast from './components/notifications/Toast';
 import EditableArea from './components/layout/EditableArea';
+import NotificationsArea from './components/notifications/NotificationsArea';
 
 function App() {
   return (
     <div className='w-full p-3 mx-auto bg-blue-50 md:py-4 md:px-12 lg:container lg:min-h-screen'>
-      <Improvement></Improvement>
+      <Toast></Toast>
       <SprintContextProvider>
         <EditableArea title={'Sprint information'}>
           <TimelineArea />
@@ -26,6 +27,9 @@ function App() {
           <ActionsArea></ActionsArea>
         </EditableArea>
       </ActionContextProvider>
+      <EditableArea title={'Notifications'}>
+        <NotificationsArea></NotificationsArea>
+      </EditableArea>
     </div>
   );
 }
